@@ -1,0 +1,11 @@
+# Build output
+bin/
+obj/
+*.user
+.vs/
+
+# Release packages
+/dist/
+
+# Decompiled game (scripts/decompile.ps1)
+/decompiled/

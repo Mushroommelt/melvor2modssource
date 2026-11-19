@@ -1,0 +1,12 @@
+MELVOR 2 EARLY ACCESS MOD PACK v0.2.2 / RECIPE QUEUE v0.2.1-ea
+
+REPORTED WINDOWS BUILD FAILURE
+src\Melvor2RecipeQueue\src\QueueUi.cs(138,38): error CS0122: 'BaseActionComponent.GameFlags' is inaccessible due to its protection level.
+
+REPRODUCED ROOT CAUSE BY .NET ASSEMBLY METADATA INSPECTION
+The Early Access game assembly defines GamesByMalcs.Melvor2.Components.Actions.BaseActionComponent.get_GameFlags() with MethodAttributes.Family (protected), so accessing action.GameFlags from an external mod cannot compile.
+
+FIX
+QueueUi.AddControls now records Environment.CurrentManagedThreadId when the stop-option UI binds. QueueUi.RefreshAfterGameEvent no longer directly accesses GameFlags; it refreshes only if the event is running on that Godot UI thread. This avoids cross-thread UI calls during regular and manually requested offline replay. The queue will repaint when the user next opens/rebinds the UI after background processing.
+
+Status: Source edited, C# compilation not possible in this environment. Installer retains compile-before-install safeguards. Loader build passed on user's computer (per supplied log). Both mod builds and in-game behavior remain to be verified.

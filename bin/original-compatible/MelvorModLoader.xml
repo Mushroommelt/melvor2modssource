@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MelvorModLoader</name>
+    </assembly>
+    <members>
+        <member name="T:MelvorModLoader.Loader">
+             <summary>
+             Entry point, called by the bootstrap the launcher (Melvor2Modded.exe) injects into GodotPlugins.Game.Main
+             (right after Godot's script bridge is initialized, before any game scene or script runs).
+            
+             Loads every <c>mods/*/mod.json</c> mod in id order into the game's AssemblyLoadContext, applies its Harmony
+             patches (each patch class separately, so one broken by a game update doesn't disable the rest) and calls its
+             <see cref="T:MelvorModLoader.IMod"/> entry points. A failing mod is logged and skipped; it never stops the game from starting.
+             </summary>
+        </member>
+        <member name="P:MelvorModLoader.Loader.GameDirectory">
+            <summary>The game folder (where Melvor2.exe is).</summary>
+        </member>
+        <member name="P:MelvorModLoader.Loader.LoaderDirectory">
+            <summary>&lt;game&gt;/modloader: the loader and shared libraries (0Harmony).</summary>
+        </member>
+        <member name="P:MelvorModLoader.Loader.ModsDirectory">
+            <summary>&lt;game&gt;/mods: one folder per mod.</summary>
+        </member>
+        <member name="T:MelvorModLoader.MainMenuInfo">
+            <summary>
+            Shows that the game runs modded: a panel in the main menu's bottom left with the loader version and a scrollable
+            list of the loaded mods (description as tooltip).
+            </summary>
+        </member>
+        <member name="T:MelvorModLoader.IMod">
+            <summary>
+            Optional mod entry point. The loader applies a mod's [HarmonyPatch] classes automatically; implement this (with a
+            public parameterless constructor) only when a mod needs to run code at startup.
+            </summary>
+        </member>
+        <member name="M:MelvorModLoader.IMod.OnLoad(MelvorModLoader.ModContext)">
+            <summary>Called once at game startup, after the mod's Harmony patches are applied and before any scene loads.</summary>
+        </member>
+        <member name="T:MelvorModLoader.ModContext">
+            <summary>What the loader knows about a loaded mod.</summary>
+        </member>
+        <member name="M:MelvorModLoader.ModContext.#ctor(MelvorModLoader.ModManifest,System.String,HarmonyLib.Harmony)">
+            <summary>What the loader knows about a loaded mod.</summary>
+        </member>
+        <member name="P:MelvorModLoader.ModContext.Directory">
+            <summary>The mod's folder, e.g. for its own data files.</summary>
+        </member>
+        <member name="P:MelvorModLoader.ModContext.Harmony">
+            <summary>The Harmony instance (id = manifest id) the mod's patches were applied with.</summary>
+        </member>
+        <member name="T:MelvorModLoader.ModLogger">
+            <summary>Writes "[prefix] message" to the game's console and log file (%APPDATA%\Games By Malcs\Melvor Idle 2\logs).</summary>
+            <remarks>
+            Deliberately avoids GD.PushError/PushWarning: mods load before Godot's ProjectSettings singleton exists, and
+            those calls dereference it, crashing the game with an access violation. GD.Print/PrintErr are safe.
+            </remarks>
+        </member>
+        <member name="M:MelvorModLoader.ModLogger.#ctor(System.String)">
+            <summary>Writes "[prefix] message" to the game's console and log file (%APPDATA%\Games By Malcs\Melvor Idle 2\logs).</summary>
+            <remarks>
+            Deliberately avoids GD.PushError/PushWarning: mods load before Godot's ProjectSettings singleton exists, and
+            those calls dereference it, crashing the game with an access violation. GD.Print/PrintErr are safe.
+            </remarks>
+        </member>
+        <member name="T:MelvorModLoader.ModManifest">
+            <summary>
+            A mod's <c>mod.json</c>, next to its assembly in <c>mods/&lt;ModFolder&gt;/</c>:
+            <code>
+            {
+              "id": "Multitasking",
+              "name": "Multitasking",
+              "version": "1.0.0",
+              "author": "you",
+              "description": "Train all skills at once.",
+              "assembly": "MultitaskingMod.dll"
+            }
+            </code>
+            </summary>
+        </member>
+        <member name="P:MelvorModLoader.ModManifest.Id">
+            <summary>Unique id; also used as the mod's Harmony id. Mods load in id order.</summary>
+        </member>
+        <member name="P:MelvorModLoader.ModManifest.Assembly">
+            <summary>The mod's main assembly, relative to the mod folder.</summary>
+        </member>
+    </members>
+</doc>

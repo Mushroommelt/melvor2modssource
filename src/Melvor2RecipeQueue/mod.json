@@ -1,0 +1,8 @@
+{
+  "id": "Melvor2RecipeQueue",
+  "name": "Crafting Recipe Queue",
+  "version": "0.2.5-ea",
+  "author": "Community mod",
+  "description": "Queue crafting recipes with individual stop conditions, plus a game-themed queue manager with reordering and pause controls.",
+  "assembly": "Melvor2RecipeQueue.dll"
+}

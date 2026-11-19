@@ -1,0 +1,79 @@
+v0.2.5 STATIC VERIFICATION (no .NET compiler in environment)
+PASS Game API: Game.get_ActionManager()
+PASS Game API: Game.get_IsSaveLoaded()
+PASS Game API: Game.get_Flags()
+PASS Game API: ActiveActionManager.get_ActiveActions()
+PASS Game API: ActionComponent.get_IsStarted()
+PASS Game API: ActionComponent.get_CurrentDescription()
+PASS Game API: ActionComponent.get_Entity()
+PASS Game API: GameEntity.get_Icon()
+PASS Game API: GameEntity.get_Id()
+PASS Game API: GameView.Bind(GamesByMalcs.Melvor2.Game)
+PASS Game API: GameView.Unbind()
+PASS Game API: GameView._Ready()
+PASS Game API: IDescribedObject.get_Icon()
+PASS Godot API: Control.add_GuiInput(
+PASS Godot API: Control.AcceptEvent()
+PASS Godot API: Timer.add_Timeout(
+PASS Godot API: Timer.set_Autostart(
+PASS Godot API: Label.set_TextOverrunBehavior(
+PASS Godot API: TextureRect.set_ExpandMode(
+PASS Godot API: TextureRect.set_StretchMode(
+PASS Godot API: StyleBox.set_ContentMarginLeft(
+PASS Godot API: CanvasLayer.set_Layer(
+PASS Godot API: Control.set_Position(
+PASS Godot API: Control.set_Size(
+PASS Godot API: Color.Lightened(
+PASS Godot API: Color.Darkened(
+PASS Godot API: PanelContainer..ctor()
+PASS Godot enum: Godot.TextureRect+ExpandModeEnum:IgnoreSize
+PASS Godot enum: Godot.TextureRect+StretchModeEnum:KeepAspectCentered
+PASS Godot enum: Godot.TextServer+OverrunBehavior:TrimEllipsis
+PASS Godot enum: Godot.MouseButton:Left
+PASS Godot enum: Godot.Control+MouseFilterEnum:Stop
+PASS Godot enum: Godot.Control+MouseFilterEnum:Ignore
+PASS Tested gameplay code unchanged: src/Melvor2RecipeQueue/src/QueueController.cs
+PASS Tested gameplay code unchanged: src/Melvor2TimeSkip/src/TimeSkipRuntime.cs
+PASS Tested gameplay code unchanged: mods/Multitasking/MultitaskingMod.dll
+PASS Tested gameplay code unchanged: mods/Multitasking/mod.json
+PASS Install/restore component unchanged: src/ModLoader_EA/src/Launcher/ModdedGame.cs
+PASS Install/restore component unchanged: Restore-Backup.ps1
+PASS Install/restore component unchanged: src/ModLoader_EA/src/Launcher/BootstrapPatcher.cs
+PASS Manifest Melvor2RecipeQueue matches DLL
+PASS Manifest Melvor2TimeSkip matches DLL
+PASS Loader version raised
+PASS HUD conditionally loads for Multitasking
+PASS HUD reads current actions
+PASS HUD uses actual item texture
+PASS HUD uses actual skill texture
+PASS HUD skips updates during offline processing
+PASS HUD supports drag
+PASS HUD supports collapse
+PASS Quick skip 1m
+PASS Quick skip 5m
+PASS Quick skip 15m
+PASS Quick skip 1h
+PASS Quick skip uses native simulator
+PASS Quick skip readiness checks offline and limit
+PASS Queue preserves Start Queue
+PASS Queue preserves Pause Queue
+PASS Queue preserves Clear Queue
+PASS Queue preserves Remove
+PASS Queue preserves Down
+PASS Queue preserves Up
+PASS Queue preserves STOP  •
+PASS Installer safeguard -Wait -RedirectStandardError
+PASS Installer safeguard Get-FileHash
+PASS Installer safeguard SaveBackup.zip
+PASS Installer safeguard Restore-Backup.ps1
+PASS Installer safeguard SelectedGameFolder.txt
+PASS Installer safeguard Validate Early Access game and mod versions
+PASS Installer safeguard Compile Recipe Queue
+PASS Installer safeguard Compile Time Skip
+PASS No game assembly redistributed
+PASS C# delimiters MultitaskingActivityHud.cs
+PASS C# delimiters ModChrome.cs
+PASS C# delimiters QueueUi.cs
+PASS C# delimiters TimeSkipUi.cs
+
+RESULT: 76/76 passed

@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <AssemblyName>Melvor2TimeSkip</AssemblyName>
+    <RootNamespace>Melvor2TimeSkip</RootNamespace>
+    <GameDir Condition="'$(GameDir)' == ''">$(MSBuildProjectDirectory)\game</GameDir>
+    <GameDataDir>$(GameDir)\data_GamesByMalcs.Melvor2_windows_x86_64</GameDataDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GamesByMalcs.Melvor2">
+      <HintPath>$(GameDataDir)\GamesByMalcs.Melvor2.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="GodotSharp">
+      <HintPath>$(GameDataDir)\GodotSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="MelvorModLoader">
+      <HintPath>$(GameDir)\modloader\MelvorModLoader.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(GameDir)\modloader\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="mod.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <Target Name="CheckExternalReferences" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(GameDataDir)\GamesByMalcs.Melvor2.dll')"
+           Text="Early Access game assembly not found under $(GameDataDir). Set -p:GameDir to the Melvor Idle 2 game folder." />
+    <Error Condition="!Exists('$(GameDataDir)\GodotSharp.dll')"
+           Text="GodotSharp.dll not found under $(GameDataDir)." />
+    <Error Condition="!Exists('$(GameDir)\modloader\MelvorModLoader.dll')"
+           Text="MelvorModLoader.dll not found. Run Melvor2Modded.exe once before building." />
+    <Error Condition="!Exists('$(GameDir)\modloader\0Harmony.dll')"
+           Text="0Harmony.dll not found. Run Melvor2Modded.exe once before building." />
+  </Target>
+</Project>

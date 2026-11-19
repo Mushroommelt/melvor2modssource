@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <AssemblyName>Melvor2RecipeQueue</AssemblyName>
+    <GameDataDir>$(GameDir)\data_GamesByMalcs.Melvor2_windows_x86_64</GameDataDir>
+  </PropertyGroup>
+
+  <Target Name="VerifyReferences" BeforeTargets="ResolveReferences">
+    <Error Condition="'$(GameDir)' == ''" Text="GameDir is required. Run Build-And-Install.ps1 -GameDir 'C:\path\to\Melvor Idle 2 Playtest'" />
+    <Error Condition="!Exists('$(GameDataDir)\GamesByMalcs.Melvor2.dll')" Text="Missing game DLL: $(GameDataDir)\GamesByMalcs.Melvor2.dll" />
+    <Error Condition="!Exists('$(GameDataDir)\GodotSharp.dll')" Text="Missing GodotSharp DLL: $(GameDataDir)\GodotSharp.dll" />
+    <Error Condition="!Exists('$(GameDir)\modloader\MelvorModLoader.dll')" Text="Missing mod loader DLL. Start Melvor2Modded.exe at least once." />
+    <Error Condition="!Exists('$(GameDir)\modloader\0Harmony.dll')" Text="Missing 0Harmony DLL. Start Melvor2Modded.exe at least once." />
+  </Target>
+
+  <ItemGroup>
+    <Reference Include="GamesByMalcs.Melvor2" HintPath="$(GameDataDir)\GamesByMalcs.Melvor2.dll" Private="false" />
+    <Reference Include="GodotSharp" HintPath="$(GameDataDir)\GodotSharp.dll" Private="false" />
+    <Reference Include="MelvorModLoader" HintPath="$(GameDir)\modloader\MelvorModLoader.dll" Private="false" />
+    <Reference Include="0Harmony" HintPath="$(GameDir)\modloader\0Harmony.dll" Private="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="mod.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <Target Name="DeployMod" AfterTargets="Build" Condition="'$(GameDir)' != '' and '$(SkipDeploy)' != 'true'">
+    <MakeDir Directories="$(GameDir)\mods\Melvor2RecipeQueue" />
+    <Copy SourceFiles="$(TargetPath);$(MSBuildProjectDirectory)\mod.json" DestinationFolder="$(GameDir)\mods\Melvor2RecipeQueue" />
+    <Message Importance="high" Text="Installed Recipe Queue at $(GameDir)\mods\Melvor2RecipeQueue" />
+  </Target>
+</Project>

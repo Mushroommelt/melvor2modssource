@@ -1,0 +1,8 @@
+{
+  "id": "Multitasking",
+  "name": "Multitasking",
+  "version": "0.3.2",
+  "author": "nachtmarv",
+  "description": "Train all skills at the same time.",
+  "assembly": "MultitaskingMod.dll"
+}

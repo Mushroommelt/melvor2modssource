@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- WinExe: no console window next to the game. Errors are shown in message boxes. -->
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>Melvor2Modded</AssemblyName>
+    <RootNamespace>MelvorModLoaderLauncher</RootNamespace>
+    <Version>$(ModLoaderVersion)</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <!-- The game's icon with the red recolored to purple. -->
+    <ApplicationIcon>Melvor2Modded.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <!-- scripts/package.ps1 publishes a self-contained single-file exe so players don't need .NET installed. -->
+  <PropertyGroup Condition="'$(RuntimeIdentifier)' != ''">
+    <PublishSingleFile>true</PublishSingleFile>
+    <EnableCompressionInSingleFile Condition="'$(SelfContained)' == 'true'">true</EnableCompressionInSingleFile>
+    <PublishTrimmed Condition="'$(SelfContained)' == 'true'">true</PublishTrimmed>
+    <!-- Mono.Cecil reports generic trim warnings (IL2104); we don't use its reflection-based import APIs. -->
+    <NoWarn>$(NoWarn);IL2104</NoWarn>
+    <DebugType>none</DebugType>
+    <!-- Otherwise the trimmer writes the build machine's obj\...\linked\*.pdb paths into the assemblies it rewrites. -->
+    <TrimmerRemoveSymbols>true</TrimmerRemoveSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mono.Cecil" Version="0.11.6" />
+  </ItemGroup>
+
+  <!-- Windows only (message boxes, hard links, Steam's registry keys). -->
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.Versioning.SupportedOSPlatformAttribute">
+      <_Parameter1>windows</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <!-- The loader (and the Harmony it ships for all mods) is embedded and extracted to <game>/modloader on launch.
+       Built in the same configuration, but never for the launcher's runtime identifier. -->
+  <ItemGroup>
+    <ProjectReference Include="..\ModLoader\ModLoader.csproj" ReferenceOutputAssembly="false"
+                      UndefineProperties="RuntimeIdentifier;SelfContained;PublishSingleFile;PublishTrimmed" />
+    <EmbeddedResource Include="..\ModLoader\bin\$(Configuration)\net10.0\MelvorModLoader.dll" LogicalName="modloader/MelvorModLoader.dll" />
+    <EmbeddedResource Include="..\ModLoader\bin\$(Configuration)\net10.0\0Harmony.dll" LogicalName="modloader/0Harmony.dll" />
+    <EmbeddedResource Include="..\ModLoader\bin\$(Configuration)\net10.0\MelvorModLoader.xml" LogicalName="modloader/MelvorModLoader.xml" />
+  </ItemGroup>
+
+</Project>

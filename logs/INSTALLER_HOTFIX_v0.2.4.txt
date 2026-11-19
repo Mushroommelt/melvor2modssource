@@ -1,0 +1,31 @@
+Melvor Idle 2 Early Access — Installer hotfix v0.2.4 (17 November 2026)
+
+Observed in user-provided Windows 10.0 SDK console log:
+PASS — Loader compiled
+PASS — Launcher compiled
+PASS — Recipe Queue compiled
+PASS — Time Skip compiled
+FAIL — Installation verification did not find <game>\modloader\MelvorModLoader.dll after launching Melvor2Modded.exe --no-launch --quiet.
+
+Diagnosis:
+- Previous installer relied on a GUI launcher to extract its embedded loader files.
+- It used PowerShell's call operator to run a WinExe and immediately checked the filesystem.
+- That wait/extraction dependency was unsafe. The precise launcher runtime behavior was not captured.
+- The installer had already copied launcher and mod files, so a partial installation is possible.
+
+v0.2.4 installation remediation:
+1. Stage and compile all modules before changing game folders.
+2. Back up existing loader, launcher, three mod folders and local save folder; record which items existed.
+3. Explicitly copy compiled loader and Harmony DLLs into the modloader directory.
+4. Copy launcher and all three mod assemblies.
+5. Use Start-Process -Wait -PassThru to synchronously invoke launcher --no-launch --quiet.
+6. Verify loader and mod DLL SHA-256, patched game DLL, modded-game state, and unchanged original DLL.
+7. Automatically restore from preinstall backup on deployment-stage failure.
+8. Remember selected Steam folder before build, including on failed attempts.
+
+Verification performed in this environment:
+- 66/66 static package/build-script checks passed.
+- All C# source files identical byte-for-byte to prior v0.2.3 package.
+- Multitasking v0.3.2 original DLL retained; no game binary bundled.
+- v0.2.4 Windows installation and live gameplay have NOT been run here.
+- Actual four-component .NET build success is supported by the user's v0.2.3 Windows console log.

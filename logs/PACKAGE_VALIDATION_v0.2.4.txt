@@ -1,0 +1,67 @@
+PASS Multitasking manifest
+PASS Multitasking manifest assembly
+PASS Melvor2RecipeQueue manifest
+PASS Melvor2RecipeQueue manifest assembly
+PASS Melvor2RecipeQueue target framework .NET 10
+PASS Melvor2RecipeQueue source files
+PASS Melvor2TimeSkip manifest
+PASS Melvor2TimeSkip manifest assembly
+PASS Melvor2TimeSkip target framework .NET 10
+PASS Melvor2TimeSkip source files
+PASS Required file Install-All.ps1
+PASS Required file Install-All.cmd
+PASS Required file README_FIRST.md
+PASS Required file Restore-Backup.ps1
+PASS Required file Collect-Logs.ps1
+PASS Required file logs/STATIC_COMPATIBILITY_AUDIT.txt
+PASS Required file src/ModLoader_EA/src/Launcher/Launcher.csproj
+PASS Original loader bin/original-compatible/Melvor2Modded.exe
+PASS Original loader bin/original-compatible/MelvorModLoader.dll
+PASS Original loader bin/original-compatible/0Harmony.dll
+PASS Loader fork version 0.2.1
+PASS Bootstrap version bump 3
+PASS Static audit passes
+PASS Installer compilation preflight
+PASS Installer hashed build lock
+PASS Multitasking SHA integrity
+PASS Source has no game DLL
+PASS CS0122 protected GameFlags access removed
+PASS Recipe Queue UI-thread captured
+PASS Recipe Queue UI-thread checked
+PASS Queue UI callback signature consistent
+PASS CS0104 Environment resolved
+PASS CS1501 stale argument removed
+PASS Window has pasted path text field
+PASS Modern file picker with address bar
+PASS Persistent game path
+PASS STA PowerShell launcher
+PASS Windows build failure follow-up report
+PASS Time Skip private GameView.Game access removed
+PASS Time Skip uses public Bind argument
+PASS Time Skip tracks bound Game directly
+PASS CS0122 fix report present
+PASS nonempty C# file QueueUi.cs
+PASS nonempty C# file RecipeQueueMod.cs
+PASS nonempty C# file QueueController.cs
+PASS nonempty C# file TimeSkipMod.cs
+PASS nonempty C# file TimeSkipRuntime.cs
+PASS nonempty C# file TimeSkipUi.cs
+PASS v0.2.4 installer banner and documentation
+PASS Explicit loader DLL deploy before launcher process
+PASS Explicit Harmony DLL deploy before launcher process
+PASS Wait for GUI launcher process
+PASS Check actual GUI process exit code
+PASS Capture loader startup stderr
+PASS Verify installed loader hashes
+PASS Verify all three installed mod assemblies
+PASS Check patched game assembly and state
+PASS Original game SHA checked after prelaunch
+PASS Pre-install inventory saved before deployment
+PASS Automatic backup restore on deployment failure
+PASS Restore validates every backed up file before making changes
+PASS Restore only touches expected game component paths
+PASS Restore leaves saves unchanged
+PASS Remember folder before builds even after failure
+PASS Picker still available
+PASS All mod & loader C# source unchanged from v0.2.3
+PACKAGE CHECKS: 66/66 PASS

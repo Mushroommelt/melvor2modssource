@@ -1,0 +1,27 @@
+EARLY ACCESS API VERIFICATION - TIME SKIP 0.1.0
+Date: 2026-11-17
+
+User-supplied new game assembly SHA-256:
+0a5a9fff320aaaff781816dee0eee938d61d14982ba7f4523dd8ca31d95f27a9
+Original Playtest assembly SHA-256:
+fe0c7ed1d36406d80237c038af6705722c3c24b273deafaf3e62244aef045d9f
+
+Verified assembly method tokens (new build):
+0x06000132 Game.RequestOfflineHours(double)
+0x06000227 Main.GameState.GameOfflineRequestedHandler(object, SleepWakeEventArgs)
+0x0600022d Main.GameState.RunOfflineProgress(double, bool)
+0x06000233 Main.GameState.RunOfflineTicks()
+0x06000127 Game.OnOfflineProgressStart()
+0x06000128 Game.OnOfflineProgressEnd(double)
+0x06002db7 GameView._Ready()
+0x06002dd1 GameView.Bind(Game)
+0x06002dd2 GameView.Unbind()
+0x0600950a OfflineProgressComponent.get_MaxOfflineTime()
+
+Loader 0.2.0 bootstrap entrypoint verified:
+  GodotPlugins.Game.Main.InitializeFromGameProject(...)
+  call Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(...)
+
+Compatibility = SOURCE-LEVEL / IL-LEVEL checked.
+Runtime game test = NOT PERFORMED.
+Compiled DLL = NOT INCLUDED, because .NET 10 SDK unavailable here.

@@ -1,0 +1,35 @@
+PASS Target Windows Early Access game SHA is locked
+PASS Loader version is v0.2.5.1
+PASS Install banner is v0.2.5.1
+PASS Pasteable folder picker remains
+PASS Build before deployment
+PASS Rollback script remains referenced
+PASS Godot timer fully qualified in src/ModLoader_EA/src/ModLoader/MultitaskingActivityHud.cs
+PASS Godot timer fully qualified in src/Melvor2TimeSkip/src/TimeSkipUi.cs
+PASS Valid project XML src/Melvor2RecipeQueue/RecipeQueue.csproj
+PASS Valid project XML src/Melvor2TimeSkip/Melvor2TimeSkip.csproj
+PASS Valid project XML src/ModLoader_EA/src/ModLoader/ModLoader.csproj
+PASS Valid project XML src/ModLoader_EA/src/Launcher/Launcher.csproj
+PASS Valid Multitasking manifest ID/assembly
+PASS Bundled original Multitasking DLL
+PASS Valid Melvor2RecipeQueue manifest ID/assembly
+PASS Editable C# source Melvor2RecipeQueue
+PASS Valid Melvor2TimeSkip manifest ID/assembly
+PASS Editable C# source Melvor2TimeSkip
+PASS Time Skip manifest identifies hotfix
+PASS Quick buttons still present
+PASS Multitasking HUD reads active actions
+PASS Original game binaries not bundled
+PASS Known-good file unchanged mods/Multitasking/MultitaskingMod.dll
+PASS Known-good file unchanged mods/Multitasking/mod.json
+PASS Known-good file unchanged src/Melvor2RecipeQueue/src/QueueController.cs
+PASS Known-good file unchanged src/Melvor2RecipeQueue/src/RecipeQueueMod.cs
+PASS Known-good file unchanged src/Melvor2RecipeQueue/src/QueueUi.cs
+PASS Known-good file unchanged src/Melvor2TimeSkip/src/TimeSkipRuntime.cs
+PASS Known-good file unchanged src/Melvor2TimeSkip/src/TimeSkipMod.cs
+PASS Known-good file unchanged src/ModLoader_EA/src/Launcher/ModdedGame.cs
+PASS Known-good file unchanged src/ModLoader_EA/src/Launcher/BootstrapPatcher.cs
+PASS Known-good file unchanged Install-All.ps1
+PASS Known-good file unchanged Restore-Backup.ps1
+
+STATIC CHECKS: 33/33 passed. This does not compile C# or test game runtime.

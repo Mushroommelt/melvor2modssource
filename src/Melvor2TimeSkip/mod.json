@@ -1,0 +1,8 @@
+{
+  "id": "Melvor2TimeSkip",
+  "name": "Time Skip",
+  "version": "0.2.5.1-ea",
+  "author": "Community source build",
+  "description": "Simulate offline progress with a full duration menu and one-click 1m, 5m, 15m and 1h shortcuts. Uses native tick replay; no system clock changes.",
+  "assembly": "Melvor2TimeSkip.dll"
+}

@@ -1,0 +1,24 @@
+EARLY ACCESS STATIC COMPATIBILITY AUDIT
+Game DLL SHA-256: 0a5a9fff320aaaff781816dee0eee938d61d14982ba7f4523dd8ca31d95f27a9
+Game method signatures: playtest = 78180 early-access = 78256
+Methods changed game-wide: removed 423 added 499
+Multitasking direct game-method references: 31 missing: 0
+PASS Loader entrypoint STABLE GodotPlugins.Game.Main.Godot.NativeInterop.godot_bool InitializeFromGameProject(nint, nint, nint, int)
+PASS Loader menu STABLE GamesByMalcs.Melvor2.MainMenu.MainMenuView.void _Ready()
+PASS Parallel start hook STABLE GamesByMalcs.Melvor2.Components.Actions.ActionComponent.bool TryStart()
+PASS Stop conflicting STABLE GamesByMalcs.Melvor2.Components.Actions.ActiveActionManager.bool TryStopActive(bool)
+PASS Recipe selector UI STABLE GamesByMalcs.Melvor2.Components.ActionUntilX.StopOptionProviderView.void Bind(GamesByMalcs.Melvor2.Components.ActionUntilX.IStopOptionProvider)
+PASS Recipe goal stop hook STABLE GamesByMalcs.Melvor2.Components.ActionUntilX.ActionUntilXComponent.void StopGoalIsCompleteChangedHandler(object, GamesByMalcs.Melvor2.Core.ValueChangedEventArgs`1<bool>)
+PASS Recipe condition stop hook STABLE GamesByMalcs.Melvor2.Components.ActionUntilX.ActionUntilXComponent.void StopConditionMetHandler(object, GamesByMalcs.Melvor2.Conditions.ConditionMetEventArgs)
+PASS Recipe manual stop STABLE GamesByMalcs.Melvor2.Components.Actions.ActionComponent.bool TryStop(bool)
+PASS Game offline request STABLE GamesByMalcs.Melvor2.Game.void RequestOfflineHours(double)
+PASS Run offline replay STABLE GamesByMalcs.Melvor2.Main+GameState.void RunOfflineProgress(double, bool)
+PASS Offline end STABLE GamesByMalcs.Melvor2.Game.void OnOfflineProgressEnd(double)
+PASS Time Skip UI STABLE GamesByMalcs.Melvor2.GameMenus.GameView.void Bind(GamesByMalcs.Melvor2.Game)
+PASS Multitasking IL transpiler target: callvirt TryStopActive(bool)
+STATIC COMPATIBILITY: PASS (runtime untested)
+
+HOTFIX ADDENDUM (17 Nov 2026; package v0.2.2):
+- A Windows compilation of the previous package revealed CS0122: BaseActionComponent.GameFlags is protected (get_GameFlags has family accessibility).
+- The queue now uses the Godot UI binding thread ID to guard post-stop UI refreshes; the illegal member access was removed.
+- Static API compatibility alone did not detect this C# visibility error. Revised Recipe Queue and Time Skip still require a successful Windows build and in-game test.

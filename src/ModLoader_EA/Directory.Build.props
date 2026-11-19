@@ -1,0 +1,37 @@
+<Project>
+  <!--
+    Shared build settings. The game defaults to the Steam install (found through the registry). Override GameDir on
+    the command line when the game lives elsewhere:
+      dotnet build -p:GameDir="D:\Games\Melvor Idle 2"
+  -->
+  <PropertyGroup>
+    <GameDir Condition="'$(GameDir)' == ''">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 3794500@InstallLocation)</GameDir>
+    <GameDataDir>$(GameDir)\data_GamesByMalcs.Melvor2_windows_x86_64</GameDataDir>
+
+    <!-- Shared by the loader and its launcher. -->
+    <ModLoaderVersion>0.2.5.1</ModLoaderVersion>
+    <HarmonyVersion>2.4.3</HarmonyVersion>
+
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- Builds must not contain paths of the build machine (the DLLs record their .pdb path): map the repository
+         folder to a neutral prefix. -->
+    <PathMap>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)'))=/_/</PathMap>
+  </PropertyGroup>
+
+  <!-- Projects that run inside the game set <ReferenceGame>true</ReferenceGame>: compile-time only references,
+       the game provides these at runtime. -->
+  <ItemGroup Condition="'$(ReferenceGame)' == 'true'">
+    <Reference Include="GamesByMalcs.Melvor2">
+      <HintPath>$(GameDataDir)\GamesByMalcs.Melvor2.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="GodotSharp">
+      <HintPath>$(GameDataDir)\GodotSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

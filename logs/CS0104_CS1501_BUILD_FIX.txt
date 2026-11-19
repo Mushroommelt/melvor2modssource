@@ -1,0 +1,19 @@
+MELVOR 2 EARLY ACCESS MOD PACK v0.2.3 / RECIPE QUEUE v0.2.2-ea
+
+WINDOWS BUILD FAILURE REPORTED BY USER FOR PACKAGE v0.2.2
+QueueUi.cs(26,58): CS0104: Environment is ambiguous between Godot.Environment and System.Environment.
+QueueController.cs(245,17): CS1501: No overload for RefreshAfterGameEvent takes 1 arguments.
+QueueUi.cs(145,13): CS0104: Environment is ambiguous between Godot.Environment and System.Environment.
+
+PATCH
+QueueUi.cs: uses System.Environment.CurrentManagedThreadId in both locations.
+QueueController.cs: calls the parameterless QueueUi.RefreshAfterGameEvent() method.
+Previously repaired protected GameFlags access (CS0122) remains removed.
+
+INSTALLER UX
+Replaces FolderBrowserDialog with a Windows Forms paste-path textbox and OpenFileDialog browser.
+Allows pasted folder path or full Melvor2.exe path; restores last successful game path.
+No compiler or Godot runtime is installed here. Source and archive structural tests performed; Windows build and game test required.
+
+ADDITIONAL PROACTIVE TIMESKIP FIX
+The shipped Early Access GameView.get_Game() method has private access (method access code 1), but GameView.Bind(Game) is public (access code 6). Time Skip UI now captures Game from the public Bind(Game) callback, including when Bind occurs before _Ready. The old private getter direct accesses are removed.

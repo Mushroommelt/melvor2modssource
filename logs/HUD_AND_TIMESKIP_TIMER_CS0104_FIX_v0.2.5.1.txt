@@ -1,0 +1,7 @@
+Melvor Idle 2 - UI Refresh v0.2.5.1
+Windows build issue: CS0104, ambiguous Timer in ModLoader/MultitaskingActivityHud.cs.
+Fix: instantiate Godot.Timer explicitly.
+Preventative fix: same namespace collision in Melvor2TimeSkip/src/TimeSkipUi.cs.
+No changes to gameplay simulation, Multitasking DLL or install/deploy logic.
+Verification: static diff, syntax tokens, assembly metadata previously checked in v0.2.5.
+Runtime and SDK compilation have NOT been performed in this environment.

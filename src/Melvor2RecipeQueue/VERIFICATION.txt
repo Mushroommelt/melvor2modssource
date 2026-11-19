@@ -1,0 +1,32 @@
+PASS Game API: StopOptionProviderView.Bind void(GamesByMalcs.Melvor2.Components.ActionUntilX.IStopOptionProvider) (token 0x060125a4)
+PASS Game API: ActionUntilXComponent.StopConditionMetHandler void(object, GamesByMalcs.Melvor2.Conditions.ConditionMetEventArgs) (token 0x060124da)
+PASS Game API: ActionUntilXComponent.StopGoalIsCompleteChangedHandler void(object, GamesByMalcs.Melvor2.Core.ValueChangedEventArgs`1<bool>) (token 0x060124db)
+PASS Game API: ActionUntilXComponent.OnSaveLoaded void() (token 0x060124d9)
+PASS Game API: ActionUntilXComponent.get_Action GamesByMalcs.Melvor2.Components.Actions.ActionComponent() (token 0x060124d4)
+PASS Game API: ActionComponent.TryStop bool(bool) (token 0x060125dd)
+PASS Game API: ActionComponent.QueueOrTryStop void() (token 0x060125de)
+PASS Game API: CraftingActionComponent`2.SelectRecipe void(T1) (token 0x060106fa)
+PASS Game API: CraftingActionComponent`2.get_SelectedRecipe T1() (token 0x060106ed)
+PASS Game API: CraftingActionComponent`2.get_CreatingRecipe T1() (token 0x060106ef)
+PASS Game API: CraftingActionUntilXComponent`2.StartCreating void() (token 0x0601252b)
+PASS Game API: IStopOptionProvider.get_StopOptions System.Collections.ObjectModel.ReadOnlyCollection`1<GamesByMalcs.Melvor2.Components.ActionUntilX.IStopOption>() (token 0x0601253d)
+PASS Game API: IStopOptionProvider.set_SelectedStopOption void(GamesByMalcs.Melvor2.Components.ActionUntilX.IStopOption) (token 0x0601253f)
+PASS Game API: ItemCurrencyQuantityStopOption.get_Quantity int() (token 0x0601254c)
+PASS Game API: ItemCurrencyQuantityStopOption.set_SelectedItemIndex void(int) (token 0x06012545)
+PASS Game API: BaseRecipeCreationsStopOption.set_Count void(int) (token 0x0601251a)
+PASS Godot API: Window.PopupCentered void(System.Nullable`1<Godot.Vector2I>)
+PASS Godot API: Node.AddChild void(Godot.Node, bool, InternalMode)
+PASS Godot API: Node.GetChildren Godot.Collections.Array`1<Godot.Node>(bool)
+PASS Godot API: Label.set_AutowrapMode void(AutowrapMode)
+PASS Godot API: Control.set_SizeFlagsHorizontal void(SizeFlags)
+PASS Godot API: BaseButton.add_Pressed void(System.Action)
+PASS Godot API: Window.add_CloseRequested void(System.Action)
+PASS Godot API: GodotObject.IsInstanceValid bool(Godot.GodotObject)
+PASS Godot API: SceneTree.get_Root Godot.Window()
+PASS Source bracket checks: RecipeQueueMod.cs
+PASS Source bracket checks: QueueController.cs
+PASS Source bracket checks: QueueUi.cs
+PASS mod.json parses and matches csproj assembly
+PASS RecipeQueue.csproj parses as XML
+NOT TESTED: C# compilation (.NET 10 SDK unavailable in build environment)
+NOT TESTED: runtime Harmony application and in-game UI or offline progress
